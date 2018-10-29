@@ -21,7 +21,7 @@ class TestApp extends React.Component {
             <Router>
                 <div>
                     <Route exact path="/" component={HomeComponent}/>
-                    <Route exact path="/signupform"
+                    <Route exact path="/signupform"ç
                            render={ () => (
                                this.props.userAdded ? (
                                    <Redirect to="/"/>

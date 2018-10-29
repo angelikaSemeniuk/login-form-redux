@@ -10,8 +10,8 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
-class HomeComponent extends React.Component {
 
+class HomeComponent extends React.Component {
     render() {
         const authorized = JSON.parse(localStorage.getItem("authorized"));
         return(

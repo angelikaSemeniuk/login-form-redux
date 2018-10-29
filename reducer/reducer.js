@@ -25,7 +25,6 @@ const reducer = (state = initialState, action) => {
                     fullUserInformation: false
                 })
             } else {
-                console.error("action-CHECK_FOR_FULL_USER_INFORMATION");
                 return Object.assign({}, state, {
                     submitOk: true,
                     fullUserInformation: true
@@ -40,7 +39,6 @@ const reducer = (state = initialState, action) => {
                     fullUserInformation: false
                 })
             } else {
-                console.error("action-CHECK_USER_AUTHORIZATION");
                 users.forEach((item) => {
                     if(item.login === state.login && item.password === state.password ) {
                         localStorage.setItem("authorized", true);
@@ -65,11 +63,9 @@ const reducer = (state = initialState, action) => {
         }
 
         case "CHECK_IF_USER_EXIST": {
-            console.error("action-CHECK_IF_USER_EXIST");
             let userExisting = false;
             users.forEach((item) => {
                 if(state.login === item.login) {
-                    console.error("action-cheking for existing user");
                    userExisting = true;
                 }
             })
@@ -86,7 +82,6 @@ const reducer = (state = initialState, action) => {
             }
         }
         case "SUBMIT_ON_SIGNUP_FORM": {
-            console.error("action-submitOk SUBMIT_ON_SIGNUP_FORM", state.submitOk);
             if(state.submitOk) {
                 users.push({name: state.fullName, login: state.login, password: state.password});
                 localStorage.setItem("users", JSON.stringify(users));

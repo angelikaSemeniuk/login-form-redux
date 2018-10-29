@@ -23,7 +23,10 @@ class HomeComponent extends React.Component {
                         <button onClick={this.props.handleSignOut.bind(this)}>Sign out</button>
                     </div>
                 ) : (
-                    <Link to="/signupform">Sign Up</Link>
+                    <div className="form-navigation">
+                        <Link to="/signinform">Sign In</Link>
+                        <Link to="/signupform">Sign Up</Link>
+                    </div>
                 )}
             </div>
         );

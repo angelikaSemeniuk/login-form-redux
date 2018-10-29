@@ -29,5 +29,10 @@ export function handleSubmitOnSignUpForm() {
 }
 
 export function handleSignOut() {
-    return { type: "HANDLE_SIGN_OUT"}
+    return { type: "HANDLE_SIGN_OUT" }
+}
+
+export function handleSignIn() {
+    console.error("action-handleSignIn");
+    return { type: "CHECK_USER_AUTHORIZATION" }
 }

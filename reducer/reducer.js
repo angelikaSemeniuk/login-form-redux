@@ -1,4 +1,4 @@
-const initialState = {fullName: "", login: "", password: "", submitOk: true, fullUserInformation: true, userAlreadyExist: false, failedSubmit: false, userAdded: false};
+const initialState = {fullName: "", login: "", password: "", submitOk: true, fullUserInformation: true, userAlreadyExist: false, failedSubmit: false, userAdded: false, userAuthorized: false, failedSubmitOnSignInForm: false};
 const users = JSON.parse(localStorage.getItem("users"));
 
 const reducer = (state = initialState, action) => {
@@ -32,6 +32,38 @@ const reducer = (state = initialState, action) => {
                 })
             }
         }
+
+        case "CHECK_USER_AUTHORIZATION": {
+            let userHasAuthorized = false;
+            if(state.login == "" || state.password == "") {
+                return Object.assign({}, state, {
+                    fullUserInformation: false
+                })
+            } else {
+                console.error("action-CHECK_USER_AUTHORIZATION");
+                users.forEach((item) => {
+                    if(item.login === state.login && item.password === state.password ) {
+                        localStorage.setItem("authorized", true);
+                        localStorage.setItem("currentUser", item.name);
+                        userHasAuthorized = true;
+                    }
+                })
+            }
+            if(userHasAuthorized) {
+                return Object.assign({}, state, {
+                    fullUserInformation: true,
+                    userAuthorized: true
+                })
+            } else {
+                return Object.assign({}, state, {
+                    login: "",
+                    password: "",
+                    failedSubmitOnSignInForm: true,
+                    userAuthorized: false,
+                })
+            }
+        }
+
         case "CHECK_IF_USER_EXIST": {
             console.error("action-CHECK_IF_USER_EXIST");
             let userExisting = false;
@@ -80,7 +112,13 @@ const reducer = (state = initialState, action) => {
         case "HANDLE_SIGN_OUT": {
             localStorage.setItem("authorized", false);
             return Object.assign({}, state, {
-                userAdded: false
+                fullName: "",
+                login: "",
+                password: "",
+                userAdded: false,
+                userAuthorized: false,
+                failedSubmitOnSignInForm: false
+
             })
         }
 

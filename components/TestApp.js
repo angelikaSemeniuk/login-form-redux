@@ -1,9 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import { connect } from "react-redux";
 import SignUpFormContainer from "../containers/SignUpFormContainer";
 import HomeComponent from "../components/HomeComponent";
 
-export default class TestApp extends React.Component {
+const mapStateToProps = (state) => {
+    console.error("action-inTestApp- userAdded", state.userAdded)
+    return {
+        userAdded: state.userAdded
+    }
+}
+class TestApp extends React.Component {
 
     render () {
         const initialUsers = [];
@@ -14,9 +21,18 @@ export default class TestApp extends React.Component {
             <Router>
                 <div>
                     <Route exact path="/" component={HomeComponent}/>
-                    <Route exact path="/signupform" component={SignUpFormContainer}/>
+                    <Route exact path="/signupform"
+                           render={ () => (
+                               this.props.userAdded ? (
+                                   <Redirect to="/"/>
+                               ) : (
+                                   <SignUpFormContainer/>
+                               ))}/>
                 </div>
             </Router>
         );
     }
 }
+
+export default connect(mapStateToProps)(TestApp)
+

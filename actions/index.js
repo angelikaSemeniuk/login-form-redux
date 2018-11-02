@@ -33,6 +33,13 @@ export function handleSignOut() {
 }
 
 export function handleSignIn() {
-    console.error("action-handleSignIn");
     return { type: "CHECK_USER_AUTHORIZATION" }
+}
+
+export function handleActionForSigUpComponent() {
+    return{ type: "HANDLE_ACTION_FOR_SIGNUP_COMPONENT" }
+}
+
+export function handleActionForSigInComponent() {
+    return{ type: "HANDLE_ACTION_FOR_SIGNIN_COMPONENT" }
 }

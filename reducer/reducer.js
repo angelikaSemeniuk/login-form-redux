@@ -112,11 +112,33 @@ const reducer = (state = initialState, action) => {
                 password: "",
                 userAdded: false,
                 userAuthorized: false,
-                failedSubmitOnSignInForm: false
-
+                failedSubmitOnSignInForm: false,
+                failedSubmit: false,
+                userAlreadyExist: false,
+                fullUserInformation: true,
+                submitOk: true
             })
         }
-
+        case "HANDLE_ACTION_FOR_SIGNUP_COMPONENT": {
+            return Object.assign({}, state, {
+                fullName: "",
+                login: "",
+                password: "",
+                failedSubmit: false,
+                userAlreadyExist: false,
+                fullUserInformation: true,
+                submitOk: true
+            })
+        }
+        case "HANDLE_ACTION_FOR_SIGNIN_COMPONENT": {
+            return Object.assign({}, state, {
+                fullName: "",
+                login: "",
+                password: "",
+                fullUserInformation: true,
+                failedSubmitOnSignInForm: false
+            })
+        }
         default:
             return state;
     }

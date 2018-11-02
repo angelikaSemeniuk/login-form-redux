@@ -1,9 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { changeLogin, changePassword, handleSignIn} from "../actions";
+import { changeLogin, changePassword, handleSignIn, handleActionForSigInComponent} from "../actions";
 
 class SignInFormContainer extends React.Component {
+
+    componentWillUnmount() {
+        this.props.handleActionForSigInComponent();
+    }
+
     render () {
         return (
             <div className="navigation-in-form">
@@ -52,6 +57,9 @@ const mapDispatchToProps = (dispatch) => {
         handleSignIn: (event) => {
             event.preventDefault();
             dispatch(handleSignIn());
+        },
+        handleActionForSigInComponent: () => {
+            dispatch(handleActionForSigInComponent());
         }
     }
 };

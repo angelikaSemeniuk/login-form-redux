@@ -1,11 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {changeName, changeLogin, changePassword, handleSubmitOnSignUpForm} from "../actions";
+import {changeName, changeLogin, changePassword, handleSubmitOnSignUpForm, handleActionForSigUpComponent} from "../actions";
 
 class SignUpFormContainer extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentWillUnmount() {
+        this.props.handleActionForSigUpComponent();
     }
 
     render() {
@@ -62,6 +66,10 @@ const mapDispatchToProps = (dispatch) => {
         handleSubmitOnSignUpForm: (event) => {
             event.preventDefault();
             dispatch(handleSubmitOnSignUpForm());
+        },
+        handleActionForSigUpComponent: () => {
+            dispatch(handleActionForSigUpComponent());
+
         }
     }
 };

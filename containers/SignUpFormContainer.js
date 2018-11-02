@@ -10,7 +10,7 @@ class SignUpFormContainer extends React.Component {
 
     render() {
         return(
-            <div className="navigation">
+            <div className="navigation-in-form">
                 <Link to="/">Home</Link>
                 <div className="signUpForm">
                     {this.props.failedSubmit ?

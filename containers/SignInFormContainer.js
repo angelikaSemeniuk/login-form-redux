@@ -6,7 +6,7 @@ import { changeLogin, changePassword, handleSignIn} from "../actions";
 class SignInFormContainer extends React.Component {
     render () {
         return (
-            <div className="navigation">
+            <div className="navigation-in-form">
                 <Link to="/">Home</Link>
                 <div className="signInForm">
                     {
@@ -21,8 +21,10 @@ class SignInFormContainer extends React.Component {
                     <form onSubmit={this.props.handleSignIn.bind(this)}>
                         <input type="text" value={this.props.login} onChange={this.props.changeLogin.bind(this)} placeholder="Login" />
                         <input type="password" value={this.props.password} onChange={this.props.changePassword.bind(this)} placeholder="Password" />
-                        <input type="submit" value="Submit"/>
-                        <Link to="/signupform">Sign Up</Link>
+                        <div className="buttons-container">
+                            <input type="submit" value="Submit"/>
+                            <Link to="/signupform">Sign Up</Link>
+                        </div>
                     </form>
                 </div>
             </div>
